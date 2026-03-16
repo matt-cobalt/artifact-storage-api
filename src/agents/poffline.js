@@ -7,7 +7,9 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_KEY
 );
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
+  : null;
 
 /**
  * P-OFFLINE - Offline Queue Management Agent
@@ -103,6 +105,10 @@ Response Format (JSON):
    * Process a queued transaction
    */
   async processQueuedTransaction(queueItem) {
+    if (!stripe) {
+      throw new Error('Stripe is not configured. Set STRIPE_SECRET_KEY to process queued payments.');
+    }
+
     try {
       const transactionData = queueItem.transaction_data;
 

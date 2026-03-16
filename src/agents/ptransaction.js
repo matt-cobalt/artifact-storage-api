@@ -7,7 +7,9 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_KEY
 );
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
+  : null;
 
 /**
  * P-TRANSACTION - Payment Processing Orchestrator
@@ -179,6 +181,10 @@ Response Format (JSON):
   async processStripePayment(input, context) {
     const { invoice, customer, shop, payment_method } = context;
     const { amount, payment_method_type, payment_token } = input;
+
+    if (!stripe) {
+      throw new Error('Stripe is not configured. Set STRIPE_SECRET_KEY to enable payment processing.');
+    }
 
     try {
       // Create Payment Intent
