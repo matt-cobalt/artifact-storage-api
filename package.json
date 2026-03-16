@@ -1,0 +1,46 @@
+{
+  "name": "artifact-storage-api",
+  "version": "0.1.0",
+  "description": "Minimal Artifact Storage API for Trinity Test (Auto Intel GTP)",
+  "type": "module",
+  "main": "src/artifact-storage/server.js",
+  "scripts": {
+    "start": "node src/artifact-storage/server.js",
+    "dev": "NODE_ENV=development node src/artifact-storage/server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.2",
+    "@supabase/supabase-js": "^2.48.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.2.1",
+    "node-cron": "^4.2.1",
+    "stripe": "^20.1.0",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.5",
+    "jest": "^29.7.0",
+    "neo4j-driver": "^6.0.1",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
+
+
+
+
+
+
+
+
+
